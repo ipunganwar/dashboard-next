@@ -18,7 +18,7 @@ export default function Search() {
     }
   };
 
-  const handleOnClik = () => {
+  const handleOnClick = () => {
     if (searchKeyword.length > 0) {
       dispatch(fetchSearch({ param: searchKeyword }));
     } else {
@@ -38,7 +38,7 @@ export default function Search() {
       <button
         type="button"
         className="text-white bg-green-700 px-4 w-30 py-1 text-center rounded-sm"
-        onClick={handleOnClik}
+        onClick={handleOnClick}
       >
         Search
       </button>

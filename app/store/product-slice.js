@@ -61,6 +61,7 @@ const products = createSlice({
     }),
       builder.addCase(fetchSearch.fulfilled, (state, action) => {
         state.products = Object.assign(state.products, { ...action.payload });
+        state.filter.tag = [action?.payload?.tag];
       });
     builder.addCase(fetchSidebarFilter.fulfilled, (state, action) => {
       state.sidebar = Object.assign(state.sidebar, { ...action.payload });
@@ -205,11 +206,14 @@ export const fetchSearch = createAsyncThunk(
 
       const totalList = result?.total || 0;
       const limit = result?.limit || 0;
+      const errorMsg = !result?.products.length ? "DATA NOT FOUND..." : "";
 
       return {
         list: result?.products || [],
         totalList,
         limit,
+        tag: param,
+        errorMsg,
       };
     } catch (error) {}
   },
