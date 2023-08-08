@@ -27,7 +27,7 @@ export default function Search() {
   };
 
   return (
-    <div className="py-4 flex items-stretch">
+    <div className="py-4 flex items-stretch justify-end">
       <input
         className="enabled:hover:border-gray-400 disabled:opacity-75 text-base text-green-600 text-center rounded-sm mr-2"
         placeholder="Search Product..."

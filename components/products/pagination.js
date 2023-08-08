@@ -19,7 +19,7 @@ export default function Pagination({ onPageChange, currentPage, pageSize }) {
     }
   };
 
-  const pagesCount = Math.ceil(totalList / pageSize); // 100 / 10
+  const pagesCount = Math.ceil(totalList / pageSize); // 100 / 30
   return (
     <div className="flex justify-between" style={{ width: "10rem" }}>
       <button

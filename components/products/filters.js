@@ -78,7 +78,10 @@ export default function Filters({ maxPrice, minPrice }) {
         title: e?.target?.value,
         checked: e?.target?.checked,
       });
-      setIsBrandFilterActive(e?.target?.checked);
+
+      const toggleChecklist =
+        updateBrand[index]?.checked === e?.target?.checked;
+      setIsBrandFilterActive(toggleChecklist);
       setBrandOptFilter(updateBrand);
     };
 
@@ -109,7 +112,9 @@ export default function Filters({ maxPrice, minPrice }) {
         title: e?.target?.value,
         checked: e?.target?.checked,
       });
-      setIsCategoryFilterActive(e?.target?.checked);
+      const toggleChecklist =
+        updateCategory[index]?.checked === e?.target?.checked;
+      setIsCategoryFilterActive(toggleChecklist);
       setCategoryOptFilter(updateCategory);
     };
 

@@ -15,8 +15,8 @@ export default function Table({ pageSize, skipSize }) {
   });
 
   return (
-    <div className="w-full py-10">
-      <table className="w-10/12 text-center">
+    <div className="text-center pt-8">
+      <table className="w-full">
         <thead>
           <tr className="border-2 text-2xl">
             <th>Product Name</th>

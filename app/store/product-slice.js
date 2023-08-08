@@ -9,6 +9,9 @@ import {
   setStorageList,
   getStorageList,
   removeStorageList,
+  setStorageTag,
+  getStorageTag,
+  removeStorageTag,
 } from "../../utils/webStorage";
 
 const initialState = {
@@ -22,6 +25,7 @@ const initialState = {
   filter: {
     minPrice: "",
     maxPrice: "",
+    tag: [],
   },
   sidebar: {
     brandList: [],
@@ -46,10 +50,14 @@ const products = createSlice({
         setStorageCategory(action?.payload?.categoryFilter);
       }
     },
+    setRemoveTag(state, action) {
+      const getTag = state?.filter?.tag?.splice(index, action?.payload?.index);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.products = Object.assign(state.products, { ...action.payload });
+      state.filter.tag = action?.payload?.tag;
     }),
       builder.addCase(fetchSearch.fulfilled, (state, action) => {
         state.products = Object.assign(state.products, { ...action.payload });
@@ -59,6 +67,8 @@ const products = createSlice({
     });
     builder.addCase(fetchFilter.fulfilled, (state, action) => {
       let temp = [];
+      let tempTag = [];
+
       const minPrice = action?.payload?.minPrice;
       const maxPrice = action?.payload?.maxPrice;
 
@@ -71,6 +81,7 @@ const products = createSlice({
             (opt) => opt?.brand === item.title,
           );
           temp.push(...apiData);
+          tempTag.push(item?.title);
         });
       }
 
@@ -84,6 +95,7 @@ const products = createSlice({
             (opt) => opt?.category === item.title,
           );
           temp.push(...apiData);
+          tempTag.push(item?.title);
         });
       }
 
@@ -99,9 +111,12 @@ const products = createSlice({
       setStorageList(setDataFilter);
 
       state.filter = Object.assign(state.filter, {
-        minPrice: +minPrice,
+        minPrice: +minPrice || "",
         maxPrice: +maxPrice || "",
+        tag: tempTag,
       });
+
+      setStorageTag(tempTag);
     });
     builder.addCase(resetFilter.fulfilled, (state, action) => {
       state.products.list = action?.payload?.list;
@@ -112,11 +127,13 @@ const products = createSlice({
       state.filter = Object.assign(state.filter, {
         minPrice: "",
         maxPrice: "",
+        tag: [],
       });
 
       removeStorageCategory();
       removeStorageBrand();
       removeStorageList();
+      removeStorageTag();
     });
   },
 });
@@ -130,12 +147,14 @@ export const fetchProducts = createAsyncThunk(
       const result = await response.json();
 
       const cachedDataList = getStorageList();
+      const cachedDataTag = getStorageTag();
 
       return {
         list:
           cachedDataList.length > 0 ? cachedDataList : result?.products || [],
         totalList: result?.total || 0,
         limit: result?.limit || 0,
+        tag: cachedDataTag.length > 0 ? cachedDataTag : [],
       };
     } catch (error) {}
   },
@@ -247,5 +266,6 @@ export const resetFilter = createAsyncThunk("products/reset", async () => {
   }
 });
 
-export const { setBrandFilter, setCategoryFilter } = products.actions;
+export const { setBrandFilter, setCategoryFilter, setRemoveTag } =
+  products.actions;
 export default products.reducer;

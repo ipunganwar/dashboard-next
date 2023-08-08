@@ -1,6 +1,7 @@
 const STORAGE_KEY_BRAND = "filterBrands";
 const STORAGE_KEY_CATEGORY = "filterCategory";
 const STORAGE_KEY_LIST_FILTER = "filterList";
+const STORAGE_KEY_TAG = "FilterKeyTag";
 
 // STORAGE_KEY_BRAND
 export const setStorageBrand = (payload) => {
@@ -36,4 +37,16 @@ export const getStorageList = () => {
 };
 export const removeStorageList = () => {
   localStorage.removeItem(STORAGE_KEY_LIST_FILTER);
+};
+
+// STORAGE_KEY_TAG
+export const setStorageTag = (payload) => {
+  localStorage.setItem(STORAGE_KEY_TAG, JSON.stringify(payload));
+};
+export const getStorageTag = () => {
+  const cacheData = localStorage.getItem(STORAGE_KEY_TAG);
+  return JSON.parse(cacheData) || [];
+};
+export const removeStorageTag = () => {
+  localStorage.removeItem(STORAGE_KEY_TAG);
 };
