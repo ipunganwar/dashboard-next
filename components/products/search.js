@@ -18,15 +18,30 @@ export default function Search() {
     }
   };
 
+  const handleOnClik = () => {
+    if (searchKeyword.length > 0) {
+      dispatch(fetchSearch({ param: searchKeyword }));
+    } else {
+      dispatch(fetchProducts({}));
+    }
+  };
+
   return (
-    <div className="py-4">
+    <div className="py-4 flex items-stretch">
       <input
-        className="enabled:hover:border-gray-400 disabled:opacity-75 text-base text-green-600"
-        placeholder="Search Product"
+        className="enabled:hover:border-gray-400 disabled:opacity-75 text-base text-green-600 text-center rounded-sm mr-2"
+        placeholder="Search Product..."
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
         onKeyDown={handleKeyDown}
       />
+      <button
+        type="button"
+        className="text-white bg-green-700 px-4 w-30 py-1 text-center rounded-sm"
+        onClick={handleOnClik}
+      >
+        Search
+      </button>
     </div>
   );
 }

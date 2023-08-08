@@ -55,14 +55,14 @@ export default function Filters({ maxPrice, minPrice }) {
       <div className="relative text-black">
         <div className="text-lg font-semibold text-sky-500">Price Range:</div>
         <input
-          className="bg-cyan-500 hover:bg-cyan-600 w-32 text-center"
+          className="bg-cyan-500 hover:bg-cyan-600 text-center rounded-sm"
           placeholder="min"
           value={minPriceFilter}
           onChange={(e) => setMinPriceFilter(e.target.value)}
         />
-        <p>to</p>
+        <p className="text-center">to</p>
         <input
-          className="bg-cyan-500 hover:bg-cyan-600 w-32 text-center"
+          className="bg-cyan-500 hover:bg-cyan-600 text-center rounded-sm"
           placeholder="max"
           value={maxPriceFilter}
           onChange={(e) => setMaxPriceFilter(e.target.value)}
@@ -137,17 +137,17 @@ export default function Filters({ maxPrice, minPrice }) {
       {priceFilter()}
       {brandFilter()}
       {categoryFilter()}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 pb-40">
         <button
           type="button"
-          className="text-white bg-green-700 px-4 py-1 w-36 text-center"
+          className="text-white bg-green-700 px-4 py-1 w-36 text-center rounded-sm"
           onClick={onSave}
         >
           Save
         </button>
         <button
           type="button"
-          className="text-white bg-green-700 px-4 py-1 w-36 text-center"
+          className="text-white bg-green-700 px-4 py-1 w-36 text-center rounded-sm"
           onClick={() => onReset()}
         >
           Reset

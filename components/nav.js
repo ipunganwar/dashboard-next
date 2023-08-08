@@ -5,7 +5,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <div className="border-2">
+    <div className="border-2 text-lg font-semibold">
       <Link
         href="/products/"
         className={pathname == "/products" ? "active" : ""}

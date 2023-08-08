@@ -25,7 +25,7 @@ export default function Products() {
   };
 
   return (
-    <div className="w-screen flex flex-col">
+    <div className="w-screen flex flex-col mx-8 overflow-auto">
       <Search />
       <Table pageSize={pageSize} skipSize={skipSize} />
       <Pagination
