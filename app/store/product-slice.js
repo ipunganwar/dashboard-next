@@ -76,24 +76,16 @@ const products = createSlice({
       const brandFilter = state?.sidebar?.brandList.filter(
         (opt) => opt?.checked,
       );
-      if (brandFilter.length > 0) {
-        brandFilter.forEach((item) => {
-          const apiData = action?.payload?.list?.filter(
-            (opt) => opt?.brand === item.title,
-          );
-          temp.push(...apiData);
-          tempTag.push(item?.title);
-        });
-      }
-
       const categoryFilter = state?.sidebar?.categoryList.filter(
         (opt) => opt?.checked,
       );
+      const filterFlag = [...categoryFilter, ...brandFilter];
 
-      if (categoryFilter.length > 0) {
-        categoryFilter.forEach((item) => {
+      if (filterFlag.length > 0) {
+        filterFlag.forEach((item) => {
           const apiData = action?.payload?.list?.filter(
-            (opt) => opt?.category === item.title,
+            (opt) =>
+              opt?.category === item?.title || opt?.brand === item?.title,
           );
           temp.push(...apiData);
           tempTag.push(item?.title);

@@ -140,8 +140,8 @@ export default function Filters({ maxPrice, minPrice }) {
   return (
     <div className="w-48 m-auto flex flex-col gap-4 pt-4">
       {priceFilter()}
-      {brandFilter()}
       {categoryFilter()}
+      {brandFilter()}
       <div className="flex flex-col gap-2 pb-40">
         <button
           type="button"
