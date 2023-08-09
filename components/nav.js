@@ -12,7 +12,9 @@ export default function Nav() {
       >
         Products
       </Link>
-      <Link href="/carts/">Carts</Link>
+      <Link href="/carts/" className={pathname == "/carts" ? "active" : ""}>
+        Carts
+      </Link>
     </div>
   );
 }
